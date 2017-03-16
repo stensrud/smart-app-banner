@@ -156,10 +156,16 @@ SmartBanner.prototype = {
 	close: function () {
 		this.hide();
     console.log('Expire', new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24)));
-		Cookies.set('smartbanner-closed', 'true', {
-			path: '/',
-			expires: new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24))
-		});
+    try {
+      Cookies.set('sasha', 'true');
+  		Cookies.set('smartbanner-closed', 'true', {
+  			path: '/',
+  			expires: new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24))
+  		});
+      console.log('set')
+    } catch (error) {
+      console.log('error', error);
+    }
 	},
 	install: function () {
 		this.hide();
