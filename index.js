@@ -3,7 +3,7 @@
 var extend = require('xtend/mutable');
 var q = require('component-query');
 var doc = require('get-doc');
-var cookie = require('cookie-cutter');
+var Cookies = require('js-cookie');
 var ua = require('ua-parser-js');
 
 // IE < 11 doesn't support navigator language property.
@@ -77,8 +77,8 @@ var SmartBanner = function (options) {
 	var unsupported = !this.type;
 	var isMobileSafari = (this.type === 'ios' && agent.browser.name === 'Mobile Safari' && Number(agent.os.version) >= 6);
 	var runningStandAlone = navigator.standalone;
-	var userDismissed = cookie.get('smartbanner-closed');
-	var userInstalled = cookie.get('smartbanner-installed');
+	var userDismissed = Cookies.get('smartbanner-closed');
+	var userInstalled = Cookies.get('smartbanner-installed');
 
 	if (unsupported || isMobileSafari || runningStandAlone || userDismissed || userInstalled) {
 		return;
@@ -153,14 +153,14 @@ SmartBanner.prototype = {
 	},
 	close: function () {
 		this.hide();
-		cookie.set('smartbanner-closed', 'true', {
+		Cookies.set('smartbanner-closed', 'true', {
 			path: '/',
 			expires: new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24))
 		});
 	},
 	install: function () {
 		this.hide();
-		cookie.set('smartbanner-installed', 'true', {
+		Cookies.set('smartbanner-installed', 'true', {
 			path: '/',
 			expires: new Date(Number(new Date()) + (this.options.daysReminder * 1000 * 60 * 60 * 24))
 		});

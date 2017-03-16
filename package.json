@@ -38,7 +38,7 @@
   "homepage": "https://github.com/kudago/smart-app-banner",
   "dependencies": {
     "component-query": "^0.0.3",
-    "cookie-cutter": "^0.1.1",
+    "js-cookie": "^2.1.3",
     "get-doc": "^1.0.3",
     "ua-parser-js": "^0.7.7",
     "xtend": "^4.0.0"
