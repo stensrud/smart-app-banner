@@ -6,8 +6,6 @@ var doc = require('get-doc');
 var Cookies = require('js-cookie');
 var ua = require('ua-parser-js');
 
-console.log('Cookies', Cookies);
-
 // IE < 11 doesn't support navigator language property.
 /* global navigator */
 var userLangAttribute = navigator.language || navigator.userLanguage || navigator.browserLanguage;
@@ -155,17 +153,10 @@ SmartBanner.prototype = {
 	},
 	close: function () {
 		this.hide();
-    console.log('Expire', new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24)));
-    try {
-      Cookies.set('sasha', 'true');
-  		Cookies.set('smartbanner-closed', 'true', {
-  			path: '/',
-  			expires: new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24))
-  		});
-      console.log('set')
-    } catch (error) {
-      console.log('error', error);
-    }
+		Cookies.set('smartbanner-closed', 'true', {
+			path: '/',
+			expires: new Date(Number(new Date()) + (this.options.daysHidden * 1000 * 60 * 60 * 24))
+		});
 	},
 	install: function () {
 		this.hide();
