@@ -75,7 +75,7 @@ var SmartBanner = function (options) {
 	// - running on standalone mode
 	// - user dismissed banner
 	var unsupported = !this.type;
-	var isMobileSafari = (this.type === 'ios' && agent.browser.name === 'Mobile Safari' && Number(agent.os.version) >= 6);
+	var isMobileSafari = (this.type === 'ios' && agent.browser.name === 'Mobile Safari' && parseInt(agent.os.version, 10) >= 6);
 	var runningStandAlone = navigator.standalone;
 	var userDismissed = Cookies.get('smartbanner-closed');
 	var userInstalled = Cookies.get('smartbanner-installed');
